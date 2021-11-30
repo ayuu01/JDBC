@@ -20,7 +20,7 @@ public class EmployeeUtility {
     }
 
     public static void insertEmployeeRecord() throws SQLException {
-        Statement statement=connection.createStatement();
+      //  Statement statement=connection.createStatement();
         System.out.println("Enter the records of employee table");
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -55,8 +55,18 @@ public class EmployeeUtility {
             java.sql.Date empJoiningDate=new java.sql.Date(ms) ;*/
 
 
-            statement.executeUpdate("insert into employee1 values('" + empId + "','" + empFirstName + "','" + empLastName + "','" + empSalary + "','" + empEmail + "','" + empDesignation + "','" + empReportTo + "','" + dateOfJoin + "')");
-
+            //statement.executeUpdate("insert into employee1 values('" + empId + "','" + empFirstName + "','" + empLastName + "','" + empSalary + "','" + empEmail + "','" + empDesignation + "','" + empReportTo + "','" + dateOfJoin + "')");
+            String query= "insert into employee1 values(empId+ empFirstName+ empLastName+empSalary +empEmail +empDesignation +empReportTo + empJoiningDate) values(?,?,?,?,?,?,?,?)";
+                
+               PreparedStatement statement=connection.prepareStatement(query);
+               statement.setInt(1,id);
+               statement.setString(2,empFirstName);
+               statement.setString(3,empLastName);
+               statement.setInt(4,empSalary);
+               statement.setInt(5,empDesignation);
+               statement.setInt(7,empReportTo);
+               statement.setString(8,empJoiningDate);
+                
             System.out.println("Are you want to insert more Record yes/no");
             String response = sc.next();
 
@@ -66,7 +76,7 @@ public class EmployeeUtility {
 
     }
     public static void insertDepartmentRecord() throws SQLException  {
-        Statement statement=connection.createStatement();
+            
             System.out.println("Enter the records of department table");
             Scanner sc = new Scanner(System.in);
             while (true) {
@@ -79,9 +89,17 @@ public class EmployeeUtility {
 
                 System.out.println("Enter the city");
                 String city = sc.next();
-
-                statement.executeUpdate("insert into department1 values('" + id + "','" + deptName + "','" + city + "')");
-
+                
+                String q= "insert into department1 values(id  + deptName  + city ) values(?,?,?)";
+                
+                PreparedStatement statement=connection.prepareStatement(q);
+                statement.setInt(1,id);
+                statement.setString(2,deptName);
+                statement.setString(3,city);
+                
+                statement.executeUpdate();
+                
+                
                 System.out.println("Are you want to insert more Record yes/no");
                 String response = sc.next();
 
