@@ -10,7 +10,7 @@ public class EmployeeController {
     public static void main(String[] args) throws Exception {
 
            Scanner sc= new Scanner (System.in);
-           //BufferReader br=new BufferReader(new InputStreamReader(System.in));
+           
 
            while(true){
 
@@ -33,7 +33,7 @@ public class EmployeeController {
 
                System.out.println("\n Enter Your Choice:");
 
-               //int choice=Integer.parseInt(br.readLine());
+               
                int choice=sc.nextInt();
 
                if(choice==1){
