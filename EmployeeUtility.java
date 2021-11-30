@@ -58,14 +58,14 @@ public class EmployeeUtility {
             //statement.executeUpdate("insert into employee1 values('" + empId + "','" + empFirstName + "','" + empLastName + "','" + empSalary + "','" + empEmail + "','" + empDesignation + "','" + empReportTo + "','" + dateOfJoin + "')");
             String query= "insert into employee1 values(empId+ empFirstName+ empLastName+empSalary +empEmail +empDesignation +empReportTo + empJoiningDate) values(?,?,?,?,?,?,?,?)";
                 
-               PreparedStatement statement=connection.prepareStatement(query);
-               statement.setInt(1,id);
-               statement.setString(2,empFirstName);
-               statement.setString(3,empLastName);
-               statement.setInt(4,empSalary);
-               statement.setInt(5,empDesignation);
-               statement.setInt(7,empReportTo);
-               statement.setString(8,empJoiningDate);
+            PreparedStatement statement=connection.prepareStatement(query);
+            statement.setInt(1,id);
+            statement.setString(2,empFirstName);
+            statement.setString(3,empLastName);
+            statement.setInt(4,empSalary);
+            statement.setInt(5,empDesignation);
+            statement.setInt(7,empReportTo);
+            statement.setString(8,empJoiningDate);
                 
             System.out.println("Are you want to insert more Record yes/no");
             String response = sc.next();
