@@ -172,7 +172,7 @@ public class EmployeeUtility {
     public static void empSecondHighestSalary() throws SQLException {
         Statement statement=connection.createStatement();
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r6 = statement.executeQuery("select * from employee1 where empSalary = (select max(empSalary) from employee where empSalary<(select max(empSalary) from employee1))");
+        ResultSet r6 = statement.executeQuery("select * from employee1 where empSalary = (select max(empSalary) from employee1 where empSalary<(select max(empSalary) from employee1))");
         display(r6);
 
     }
@@ -180,7 +180,7 @@ public class EmployeeUtility {
     public static void empSalaryLess() throws SQLException {
         Statement statement=connection.createStatement();
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r7 = statement.executeQuery("select * from employee1 where empSalary < (select max(empSalary) from employee where empSalary<(select max(empSalary) from employee1))");
+        ResultSet r7 = statement.executeQuery("select * from employee1 where empSalary < (select max(empSalary) from employee1 where empSalary<(select max(empSalary) from employee1))");
         display(r7);
 
     }
