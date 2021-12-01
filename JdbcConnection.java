@@ -18,7 +18,7 @@ public class JdbcConnection {
             //Class.forName("oracle.jdbc.driver.OracleDriver");
             System.out.println("Driver  Loaded");
 
-            Connection connection = DriverManager.getConnection(url, user, pass);
+            connection = DriverManager.getConnection(url, user, pass);
             System.out.println("Connection Established");
 
 
