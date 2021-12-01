@@ -9,10 +9,10 @@ public class EmployeeUtility {
     public static void createTable() throws SQLException {
 
         Statement statement=connection.createStatement();
-        String empTable = "create table employee1(empId int,empFirstName varchar(20),empLastName varchar(20),empSalary int,empEmail varchar(20),empDesignation varchar(15),empReportTo int,empJoiningDate varchar(20))";
+        String empTable = "create table employee1(empId int,empFirstName varchar(20),empLastName varchar(20),empSalary int,empEmail varchar(20),empDesignation varchar(15),empReportTo varchar(20),empJoiningDate varchar(20))";
 
 
-        String deptTable= "create table department1(id int, deptName varchar(10), city varchar(20))";
+        String deptTable= "create table department1(id int, name varchar(10), city varchar(20))";
 
         statement.executeUpdate(empTable);
         statement.executeUpdate(deptTable);
@@ -20,7 +20,7 @@ public class EmployeeUtility {
     }
 
     public static void insertEmployeeRecord() throws SQLException {
-      //  Statement statement=connection.createStatement();
+        Statement statement=connection.createStatement();
         System.out.println("Enter the records of employee table");
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -55,18 +55,8 @@ public class EmployeeUtility {
             java.sql.Date empJoiningDate=new java.sql.Date(ms) ;*/
 
 
-            //statement.executeUpdate("insert into employee1 values('" + empId + "','" + empFirstName + "','" + empLastName + "','" + empSalary + "','" + empEmail + "','" + empDesignation + "','" + empReportTo + "','" + dateOfJoin + "')");
-            String query= "insert into employee1 values(empId+ empFirstName+ empLastName+empSalary +empEmail +empDesignation +empReportTo + empJoiningDate) values(?,?,?,?,?,?,?,?)";
-                
-            PreparedStatement statement=connection.prepareStatement(query);
-            statement.setInt(1,id);
-            statement.setString(2,empFirstName);
-            statement.setString(3,empLastName);
-            statement.setInt(4,empSalary);
-            statement.setInt(5,empDesignation);
-            statement.setInt(7,empReportTo);
-            statement.setString(8,empJoiningDate);
-                
+            statement.executeUpdate("insert into employee1 values('" + empId + "','" + empFirstName + "','" + empLastName + "','" + empSalary + "','" + empEmail + "','" + empDesignation + "','" + empReportTo + "','" + dateOfJoin + "')");
+
             System.out.println("Are you want to insert more Record yes/no");
             String response = sc.next();
 
@@ -76,7 +66,7 @@ public class EmployeeUtility {
 
     }
     public static void insertDepartmentRecord() throws SQLException  {
-            
+            Statement statement=connection.createStatement();
             System.out.println("Enter the records of department table");
             Scanner sc = new Scanner(System.in);
             while (true) {
@@ -84,22 +74,14 @@ public class EmployeeUtility {
                 System.out.println("Enter the id");
                 int id = sc.nextInt();
 
-                System.out.println("Enter the deptName");
-                String deptName = sc.next();
+                System.out.println("Enter the name");
+                String name = sc.next();
 
                 System.out.println("Enter the city");
                 String city = sc.next();
-                
-                String q= "insert into department1 values(id  + deptName  + city ) values(?,?,?)";
-                
-                PreparedStatement statement=connection.prepareStatement(q);
-                statement.setInt(1,id);
-                statement.setString(2,deptName);
-                statement.setString(3,city);
-                
-                statement.executeUpdate();
-                
-                
+
+                statement.executeUpdate("insert into department1 values('" + id + "','" + name + "','" + city + "')");
+
                 System.out.println("Are you want to insert more Record yes/no");
                 String response = sc.next();
 
@@ -147,7 +129,7 @@ public class EmployeeUtility {
         System.out.println("-------------------------------------------------------------------------------------------------------");
         ResultSet r3 = statement.executeQuery("select empFirstName, empReportTo from employee1");
         while (r3.next()) {
-            System.out.println(r3.getString(1) + " " + r3.getInt(2));
+            System.out.println(r3.getString(1) + " " + r3.getString(2));
         }
 
     }
@@ -188,8 +170,10 @@ public class EmployeeUtility {
     public static void empDepartment() throws SQLException {
         Statement statement=connection.createStatement();
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r8 = statement.executeQuery("select * from employee1 e join department1 d on (e.empId = d.id)");
-        display(r8);
+        ResultSet r8 = statement.executeQuery("select empFirstName,name from employee1 e join department1 d where e.empId = d.id");
+        while (r8.next()) {
+            System.out.println(r8.getString(1) + " " + r8.getString(2));
+        }
 
     }
     public static void empCityY() throws SQLException {
@@ -204,7 +188,7 @@ public class EmployeeUtility {
 
         Statement statement=connection.createStatement();
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r10 = statement.executeQuery("select sum (empSalary) from employee1");
+        ResultSet r10 = statement.executeQuery("select sum(empSalary) from employee1");
 
         while (r10.next()) {
             System.out.println(r10.getInt(1));
@@ -214,7 +198,7 @@ public class EmployeeUtility {
         Statement statement=connection.createStatement();
 
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r11 = statement.executeQuery("select avg (empSalary) from employee1 e join department1 d on e.empId = d.id and city = 'Y'");
+        ResultSet r11 = statement.executeQuery("select avg(empSalary) from employee1 e join department1 d on e.empId = d.id and city = 'Y'");
 
         while (r11.next()) {
             System.out.println(r11.getInt(1));
@@ -225,7 +209,7 @@ public class EmployeeUtility {
         Statement statement=connection.createStatement();
 
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r12 = statement.executeQuery("select sum (empSalary) from employee1 e join department1 d on e.empid = d.id group by d.deptName");
+        ResultSet r12 = statement.executeQuery("select sum(empSalary) from employee1 e join department1 d on e.empid = d.id group by d.name");
 
         while (r12.next()) {
             System.out.println(r12.getInt(1));
