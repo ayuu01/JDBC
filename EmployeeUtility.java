@@ -9,10 +9,10 @@ public class EmployeeUtility {
     public static void createTable() throws SQLException {
 
         Statement statement=connection.createStatement();
-        String empTable = "create table employee1(empId int,empFirstName char(20),empLastName char(20),empSalary int(20),empEmail char(20),empDesignation char(15),empReportTo int,empJoiningDate char(20))";
+        String empTable = "create table employee1(empId int,empFirstName varchar(20),empLastName varchar(20),empSalary int,empEmail varchar(20),empDesignation varchar(15),empReportTo int,empJoiningDate varchar(20))";
 
 
-        String deptTable= "create table department1(id int, deptName char(10), city char(20))";
+        String deptTable= "create table department1(id int, deptName varchar(10), city varchar(20))";
 
         statement.executeUpdate(empTable);
         statement.executeUpdate(deptTable);
