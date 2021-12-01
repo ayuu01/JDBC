@@ -214,7 +214,7 @@ public class EmployeeUtility {
         Statement statement=connection.createStatement();
 
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r11 = statement.executeQuery("select avg (empSalary) from employee1 e join department d on e.empId = d.id and city = 'Y'");
+        ResultSet r11 = statement.executeQuery("select avg (empSalary) from employee1 e join department1 d on e.empId = d.id and city = 'Y'");
 
         while (r11.next()) {
             System.out.println(r11.getInt(1));
@@ -225,7 +225,7 @@ public class EmployeeUtility {
         Statement statement=connection.createStatement();
 
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r12 = statement.executeQuery("select sum (empSalary) from employee1 e join department d on e.empid = d.id group by d.deptName");
+        ResultSet r12 = statement.executeQuery("select sum (empSalary) from employee1 e join department1 d on e.empid = d.id group by d.deptName");
 
         while (r12.next()) {
             System.out.println(r12.getInt(1));
