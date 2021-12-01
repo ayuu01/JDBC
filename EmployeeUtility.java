@@ -164,7 +164,7 @@ public class EmployeeUtility {
         Statement statement=connection.createStatement();
 
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        ResultSet r5 = statement.executeQuery("select * from employee1 where(empSalary IN(select top(5) salary from employee1 group by empSalary order by empSalary desc))");
+        ResultSet r5 = statement.executeQuery("select * from employee1 group by empSalary order by empSalary desc limit 5");
         display(r5);
 
     }
