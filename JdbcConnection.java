@@ -5,10 +5,14 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class JdbcConnection {
-    static Connection connection;
+    static Connection connection=null;
+    private JdbcConnection(){
+    }
 
     public static Connection createConnection(){
         try {
+          if(connection==null){
+                
             String url = "jdbc:mysql://localhost:3306/jdbcDb";
            // String url="jdbc:oracle:thin:@localhost:1521:xe";
             String user = "root";
@@ -22,7 +26,9 @@ public class JdbcConnection {
             System.out.println("Connection Established");
 
 
-        } catch (Exception e) {
+          }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return connection;
