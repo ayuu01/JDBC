@@ -1,0 +1,61 @@
+EmpId			EmpName			Salary
+======================================================
+1001			Raman 			10000
+1002			Rohit			20000
+1003			Manoj			12000
+1004			Amit 			12000
+1005			Kabit			11500
+1006			Laxman			11500
+1007			Dipesh			10000
+1008			Amit 			10000
+1009			Manoj			17500
+1010			Rohit			21000
+1003			Manoj			15000
+1002			Rohit			20000
+
+1. Store All the above Employee using Suitable Collections.
+
+2. Print Employee List in sorting order of empId (using comparator/comparable)
+
+3. (a) Print all the unique Employee (use equals and hascode and store in set)
+   (b) Sort the above unique Employee according to name
+
+4. (a) Store All the Employee List using EmpId as a key in Map and value should be EmployeeDetails
+	Example
+	map.put("1001", new Employee(1001,"Dummy",8000));
+   (b) Fetch Employee Details By empId
+
+5. Print all the Employee Details Salary wise in json format
+   (a) Sort Employee List by name
+   (b) Salary should be in ASC order
+   Example :
+   [
+	   {
+	   	"salary":10000
+	   	"empList":[
+	   				{
+	   					"empId":"1001",
+	   					"empName":"Raman"
+	   				},
+	   				{
+	   					"empId":"1002",
+	   					"empName":"Dipesh"
+	   				}
+	   			]
+	   
+	   },
+	   {
+	   	"salary":12000
+	   	"empList":[
+	   				{
+	   					"empId":"1003",
+	   					"empName":"Manoj"
+	   				},
+	   				{
+	   					"empId":"1004",
+	   					"empName":"Amit"
+	   				}
+	   			]
+	   
+	   }
+   ]
